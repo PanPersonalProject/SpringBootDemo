@@ -16,6 +16,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	//导入mybatis依赖
+    implementation 'org.mybatis:mybatis:3.5.11'
+	//导入mysql驱动
+    implementation 'mysql:mysql-connector-java:8.0.32'
 }
 
 tasks.named('test') {
