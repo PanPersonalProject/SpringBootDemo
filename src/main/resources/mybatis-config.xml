@@ -17,6 +17,9 @@
     </environments>
     <mappers>
         <!--        加载sql映射文件-->
-        <mapper resource="mappers/UserMapper.xml"/>
+<!--        <mapper resource="mappers/UserMapper.xml"/>-->
+
+        <!-- mapper代理方式 与java mapper同包名-->
+        <package name="com.example.demo.mappers"/>
     </mappers>
 </configuration>
