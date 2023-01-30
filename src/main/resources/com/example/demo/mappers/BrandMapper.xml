@@ -14,5 +14,19 @@
     </select>
 
 
+    <!--    参数占位符：
+            1.#{}:会将其替换为？，可以防止sql注入
+            2.${}:拼sql，会从在sql入住问题
+            3.使用时机：
+                1.参数传递的时候#{}
+                2.表面或者列名不固定的时候${}
+            4. CDATA用于特殊字符
+                <![CDATA[
+                <
+                ]]>
+     -->
+    <select id="selectById" resultType="com.example.demo.bean.Brand">
 
+        select * from tb_brand where id = #{id}
+    </select>
 </mapper>
