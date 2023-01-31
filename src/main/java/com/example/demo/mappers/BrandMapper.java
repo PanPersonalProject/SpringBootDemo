@@ -30,4 +30,9 @@ public interface BrandMapper {
 
     void add(Brand brand);
 
+    /**
+     * 修改
+     */
+    int update(Brand brand);
+
 }

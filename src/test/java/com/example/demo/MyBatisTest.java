@@ -109,7 +109,35 @@ public class MyBatisTest {
         brandMapper.add(brand);
         System.out.println(brand);
     }
+    @Test
+    public void testUpdate() throws IOException {
+        //接收参数
+        int status = 0;
+        String companyName = "波导手机";
+        String brandName = "波导";
+        String description = "波导手机,手机中的拖拉机";
+        int ordered = 200;
+        int id = 22;
 
+        //封装对象
+        Brand brand = new Brand();
+        brand.setStatus(status);
+//        brand.setCompanyName(companyName);
+//        brand.setBrandName(brandName);
+        brand.setDescription(description);
+//        brand.setOrdered(ordered);
+        brand.setId(id);
+
+        BrandMapper brandMapper =createMapper(BrandMapper.class);
+
+        //4. 执行方法
+
+
+        int count = brandMapper.update(brand);
+        System.out.println(count);
+
+
+    }
     <T> T createMapper(Class<T> type) throws IOException {
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
