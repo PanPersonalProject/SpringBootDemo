@@ -10,7 +10,8 @@
     </resultMap>
 
     <select id="selectAll" resultMap="brandMap">
-        select * from tb_brand
+        select *
+        from tb_brand
     </select>
 
 
@@ -27,7 +28,9 @@
      -->
     <select id="selectById" resultMap="brandMap">
 
-        select * from tb_brand where id = #{id}
+        select *
+        from tb_brand
+        where id = #{id}
     </select>
     <select id="selectByCondition" resultMap="brandMap">
         select *
@@ -68,4 +71,12 @@
         </where>
     </select>
 
+   <!--
+   主键返回
+   useGeneratedKeys	（仅适用于 insert 和 update）这会令 MyBatis 使用 JDBC 的 getGeneratedKeys 方法来取出由数据库内部生成的主键（比如：像 MySQL 和 SQL Server 这样的关系型数据库管理系统的自动递增字段），默认值：false。
+    keyProperty	（仅适用于 insert 和 update）指定能够唯一识别对象的属性，MyBatis 会使用 getGeneratedKeys 的返回值或 insert 语句的 selectKey 子元素设置它的值，默认值：未设置（unset）。如果生成列不止一个，可以用逗号分隔多个属性名称。-->
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_brand(brand_name, company_name, ordered, description, status)
+        values (#{brandName}, #{companyName}, #{ordered}, #{description}, #{status})
+    </insert>
 </mapper>

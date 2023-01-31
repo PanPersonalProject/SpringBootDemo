@@ -86,12 +86,35 @@ public class MyBatisTest {
         System.out.println(brands);
     }
 
+    @Test
+    public void testAdd() throws IOException {
+        //接收参数
+        int status = 1;
+        String companyName = "波导手机";
+        String brandName = "波导";
+        String description = "手机中的战斗机";
+        int ordered = 100;
+
+
+        //封装对象
+        Brand brand = new Brand();
+        brand.setStatus(status);
+        brand.setCompanyName(companyName);
+        brand.setBrandName(brandName);
+        brand.setDescription(description);
+        brand.setOrdered(ordered);
+
+        BrandMapper brandMapper = createMapper(BrandMapper.class);
+
+        brandMapper.add(brand);
+        System.out.println(brand);
+    }
 
     <T> T createMapper(Class<T> type) throws IOException {
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
         return sqlSession.getMapper(type);
     }
 }
