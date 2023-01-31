@@ -41,10 +41,10 @@ public class MyBatisTest {
         brandName = "%" + brandName + "%";
 
         //封装对象
-       /* Brand brand = new Brand();
-        brand.setStatus(status);
+        Brand brand = new Brand();
+//        brand.setStatus(status);
         brand.setCompanyName(companyName);
-        brand.setBrandName(brandName);*/
+        brand.setBrandName(brandName);
 
 //        Map map = new HashMap();
         // map.put("status" , status);
@@ -57,13 +57,36 @@ public class MyBatisTest {
 
         //4. 执行方法
 
-        List<Brand> brands = brandMapper.selectByCondition(status, companyName, brandName);
-//        List<Brand> brands = brandMapper.selectByCondition(brand);
+//        List<Brand> brands = brandMapper.selectByCondition(status, companyName, brandName);
+        List<Brand> brands = brandMapper.selectByCondition(brand);
 //        List<Brand> brands = brandMapper.selectByCondition(map);
         System.out.println(brands);
-
-
     }
+
+    @Test
+    public void selectByConditionSingle() throws IOException {
+        //接收参数
+        int status = 1;
+        String companyName = "华为";
+        String brandName = "华为";
+
+        // 处理参数
+        companyName = "%" + companyName + "%";
+        brandName = "%" + brandName + "%";
+
+        //封装对象
+        Brand brand = new Brand();
+        brand.setStatus(status);
+        brand.setCompanyName(companyName);
+        brand.setBrandName(brandName);
+
+        BrandMapper brandMapper =createMapper(BrandMapper.class);
+
+        List<Brand> brands = brandMapper.selectByConditionSingle(brand);
+        System.out.println(brands);
+    }
+
+
     <T> T createMapper(Class<T> type) throws IOException {
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
