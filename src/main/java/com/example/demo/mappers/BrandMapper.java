@@ -4,6 +4,7 @@ import com.example.demo.bean.Brand;
 import org.apache.ibatis.annotations.Param;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface BrandMapper {
@@ -35,4 +36,21 @@ public interface BrandMapper {
      */
     int update(Brand brand);
 
+
+    /**
+     * 根据id删除
+     */
+    void deleteById(int id);
+
+
+    /**
+     * 批量删除
+     */
+    void deleteByIds(@Param("ids") int[] ids);
+
+
+    /**
+     * 批量删除
+     */
+    void deleteByIds(List<Integer> ids);
 }

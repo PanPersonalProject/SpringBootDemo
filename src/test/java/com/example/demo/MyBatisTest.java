@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MyBatisTest {
@@ -138,6 +140,19 @@ public class MyBatisTest {
 
 
     }
+
+    @Test
+    public void testDeleteById() throws IOException {
+        createMapper(BrandMapper.class).deleteById(22);
+    }
+
+    @Test
+    public void testDeleteByIds() throws IOException {
+//        int[] ids = {25, 26};
+        List<Integer> ids= Arrays.asList(26,27);
+        createMapper(BrandMapper.class).deleteByIds(ids);
+    }
+
     <T> T createMapper(Class<T> type) throws IOException {
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
