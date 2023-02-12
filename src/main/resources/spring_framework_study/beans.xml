@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--构造函数-->
+    <bean id="hello" name="hello别名"
+          class="com.example.demo.spring_framework_study.beans.Hello">
+        <constructor-arg name="helloTwo" ref="hello2"/>
+        <constructor-arg name="helloThree" ref="hello3"/>
+        <property name="name" value="Pan"/>
+    </bean>
+
+    <!--c命名空间 快捷构造参数写法-->
+    <bean id="hello_c"
+          c:helloTwo-ref="hello2"
+          c:helloThree-ref="hello3"
+          class="com.example.demo.spring_framework_study.beans.Hello">
+
+        <property name="name" value="Pan"/>
+    </bean>
+
+    <bean id="hello2"
+          class="com.example.demo.spring_framework_study.beans.Hello.HelloTwo">
+    </bean>
+    <bean id="hello3"
+          class="com.example.demo.spring_framework_study.beans.Hello.HelloThree">
+    </bean>
+
+
+    <!--各种type注入simple-->
+    <!--p命名空间 快捷参数写法-->
+    <bean id="student"
+          p:name="Pan"
+          class="com.example.demo.spring_framework_study.beans.Student">
+
+        <!--ref-->
+        <property name="address" ref="address"/>
+
+        <!--数组-->
+        <property name="books">
+            <array>
+                <value>西游记</value>
+                <value>红楼梦</value>
+                <value>水浒传</value>
+            </array>
+        </property>
+
+        <!--list-->
+        <property name="hobbys">
+            <list>
+                <value>听歌</value>
+                <value>看电影</value>
+                <value>爬山</value>
+            </list>
+        </property>
+
+        <!--null-->
+        <property name="wife">
+            <null/>
+        </property>
+
+        <!--map-->
+        <property name="card">
+            <map>
+                <entry key="中国邮政" value="456456456465456"/>
+                <entry key="建设" value="1456682255511"/>
+                <!--<entry key="a ref" value-ref="myDataSource"/>-->
+            </map>
+        </property>
+
+        <!--set-->
+        <property name="games">
+            <set>
+                <value>LOL</value>
+                <value>BOB</value>
+                <value>COC</value>
+            </set>
+        </property>
+
+        <!--property-->
+        <property name="info">
+            <props>
+                <prop key="学号">20190604</prop>
+                <prop key="性别">男</prop>
+                <prop key="姓名">小明</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="address" class="com.example.demo.spring_framework_study.beans.Address">
+        <property name="address" value="杭州"/>
+    </bean>
+</beans>
