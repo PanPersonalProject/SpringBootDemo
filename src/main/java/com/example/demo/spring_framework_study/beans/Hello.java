@@ -1,10 +1,14 @@
 package com.example.demo.spring_framework_study.beans;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Hello {
+    @Autowired
+    Student student;
     public Hello(HelloTwo helloTwo, HelloThree helloThree) {
-        System.out.println(helloTwo.toString()
-                + "\n"
-                + helloThree.toString());
+//        System.out.println(helloTwo.toString()
+//                + "\n"
+//                + helloThree.toString());
     }
 
     private String name;
@@ -18,7 +22,8 @@ public class Hello {
     }
 
     public void show() {
-        System.out.println("Hello," + name);
+        System.out.println("依赖注入成功");
+        student.show();
     }
 
     static class HelloTwo {
