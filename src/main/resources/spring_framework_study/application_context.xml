@@ -8,5 +8,6 @@
         https://www.springframework.org/schema/context/spring-context.xsd">
 
     <import resource="beans.xml"/>
+    <import resource="aop_test.xml"/>
     <context:component-scan base-package="com.example.demo.spring_framework_study.beans.auto"/>
 </beans>

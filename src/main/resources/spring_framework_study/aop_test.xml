@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:annotation-config/>
+    <aop:aspectj-autoproxy/>
+
+    <!--注册bean-->
+    <bean id="userService" class="com.example.demo.spring_framework_study.aop.UserServiceImpl"/>
+    <bean id="log" class="com.example.demo.spring_framework_study.aop.Log"/>
+    <bean id="afterLog" class="com.example.demo.spring_framework_study.aop.AfterLog"/>
+    <bean id="diy" class="com.example.demo.spring_framework_study.aop.DiyPointcut"/>
+    <bean id="annotationPointcut" class="com.example.demo.spring_framework_study.aop.AnnotationPointcut"/>
+    <!--    aop的配置-->
+    <aop:config>
+        <!--切入点  expression:表达式匹配要执行的方法-->
+        <aop:pointcut id="pointcut" expression="execution(* com.example.demo.spring_framework_study.aop.UserServiceImpl.*(..))"/>
+        <!--执行环绕; advice-ref执行方法 . pointcut-ref切入点-->
+        <aop:advisor advice-ref="log" pointcut-ref="pointcut"/>
+        <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"/>
+    </aop:config>
+
+<!--
+    <aop:config>
+        &lt;!&ndash;第二种方式：使用AOP的标签实现&ndash;&gt;
+        <aop:aspect ref="diy">
+            <aop:pointcut id="diyPonitcut" expression="execution(* com.example.demo.spring_framework_study.aop.UserServiceImpl.*(..))"/>
+            <aop:before pointcut-ref="diyPonitcut" method="before"/>
+            <aop:after pointcut-ref="diyPonitcut" method="after"/>
+        </aop:aspect>
+    </aop:config>
+-->
+</beans>
